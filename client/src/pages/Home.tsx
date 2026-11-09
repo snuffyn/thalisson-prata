@@ -15,27 +15,28 @@ import {
   X,
 } from "lucide-react";
 
-const heroImage = "/manus-storage/async-images/mILrnYpukza3jH9ZoUjhUP/image-1.webp";
+const asset = (file: string) => `${import.meta.env.BASE_URL}assets/${file}`;
+const heroImage = asset("hero-prata.webp");
 const products = [
   {
     name: "Anel Órbita",
     category: "Prata 925 · assinatura",
     price: "R$ 189",
-    image: "/manus-storage/async-images/sMV88vpD3hEPgb3GFvZh2g/image-1.webp",
+    image: asset("anel-orbita.webp"),
     tone: "stone",
   },
   {
     name: "Corrente Norte",
     category: "Prata 925 · 55 cm",
     price: "R$ 249",
-    image: "/manus-storage/async-images/sMV88vpD3hEPgb3GFvZh2g/image-2.webp",
+    image: asset("corrente-norte.webp"),
     tone: "ink",
   },
   {
     name: "Pulseira Eixo",
     category: "Prata 925 · ajuste livre",
     price: "R$ 219",
-    image: "/manus-storage/async-images/sMV88vpD3hEPgb3GFvZh2g/image-3.webp",
+    image: asset("pulseira-eixo.webp"),
     tone: "mist",
   },
 ];
