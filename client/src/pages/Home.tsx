@@ -64,7 +64,7 @@ const faqs = [
 ];
 
 const whatsappLink =
-  "https://wa.me/?text=Ol%C3%A1%2C%20Thalisson%20Prata.%20Quero%20conhecer%20a%20curadoria%20de%20pratas.";
+  "https://wa.me/556294369000?text=Ol%C3%A1%2C%20Thalisson%20Prata.%20Quero%20conhecer%20a%20curadoria%20de%20pratas.";
 
 function BrandMark() {
   return (
