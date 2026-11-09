@@ -15,8 +15,8 @@ function Router() {
       <Switch>
         <Route path={"/"} component={Home} />
         <Route path={"/404"} component={NotFound} />
-        {/* Final fallback route */}
-        <Route component={NotFound} />
+        {/* A landing de página única deve continuar renderizando a Home no fallback. */}
+        <Route component={Home} />
       </Switch>
     </WouterRouter>
   );
