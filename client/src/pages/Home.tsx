@@ -31,7 +31,7 @@ const faqs = [
 ];
 
 function Logo({ compact = false }: { compact?: boolean }) {
-  return <img className={compact ? "logo-image logo-compact" : "logo-image"} src={asset("deth-logo.jpeg")} alt="D&TH Jóias" />;
+  return <img className={compact ? "logo-image logo-compact" : "logo-image"} src={asset("deth-logo-transparent.png")} alt="D&TH Jóias" />;
 }
 
 export default function Home() {
