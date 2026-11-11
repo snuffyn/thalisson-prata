@@ -1,14 +1,12 @@
 import { useState } from "react";
 import {
-  ArrowDownRight,
   ArrowUpRight,
   Check,
   ChevronDown,
   Instagram,
+  Mail,
   Menu,
   MessageCircle,
-  Minus,
-  Plus,
   ShieldCheck,
   Sparkles,
   Truck,
@@ -16,261 +14,81 @@ import {
 } from "lucide-react";
 
 const asset = (file: string) => `${import.meta.env.BASE_URL}assets/${file}`;
-const heroImage = asset("hero-prata.webp");
+const whatsappLink = "https://wa.me/5562991127950?text=Ol%C3%A1%2C%20D%26TH%20J%C3%B3ias!%20Quero%20conhecer%20as%20pe%C3%A7as%20em%20Prata%20925.";
+const instagramLink = "https://www.instagram.com/dethjoias.pratas925";
+
 const products = [
-  {
-    name: "Anel Órbita",
-    category: "Prata 925 · assinatura",
-    price: "R$ 189",
-    image: asset("anel-orbita.webp"),
-    tone: "stone",
-  },
-  {
-    name: "Corrente Norte",
-    category: "Prata 925 · 55 cm",
-    price: "R$ 249",
-    image: asset("corrente-norte.webp"),
-    tone: "ink",
-  },
-  {
-    name: "Pulseira Eixo",
-    category: "Prata 925 · ajuste livre",
-    price: "R$ 219",
-    image: asset("pulseira-eixo.webp"),
-    tone: "mist",
-  },
+  { name: "Brincos em Prata 925", detail: "Delicados, clássicos e modernos", image: asset("deth-earrings.jpeg") },
+  { name: "Colares e correntes", detail: "Elegância para todos os momentos", image: asset("deth-necklace.jpeg") },
+  { name: "Peças que contam histórias", detail: "Conjuntos e presentes especiais", image: asset("deth-clover.jpeg") },
 ];
 
 const faqs = [
-  {
-    question: "As peças são de prata de verdade?",
-    answer:
-      "Sim. Nossa curadoria é feita em prata 925, uma liga com 92,5% de prata pura, escolhida por sua resistência, brilho e capacidade de acompanhar o uso diário.",
-  },
-  {
-    question: "Como funciona a compra pelo WhatsApp?",
-    answer:
-      "Você escolhe a peça, chama a gente pelo WhatsApp e recebe atendimento pessoal para confirmar disponibilidade, tamanho, pagamento e endereço de entrega. Sem carrinho escondido ou resposta automática.",
-  },
-  {
-    question: "Como cuidar da minha joia?",
-    answer:
-      "Guarde sua peça em local seco, de preferência no saquinho individual. Evite contato direto com perfumes, cremes e água do mar. Quando quiser, fazemos uma orientação de limpeza para devolver o brilho original.",
-  },
-  {
-    question: "Vocês entregam para todo o Brasil?",
-    answer:
-      "Sim. Enviamos para todo o Brasil com rastreio. O prazo varia conforme a cidade e é confirmado no atendimento, junto com as opções de frete disponíveis.",
-  },
+  { question: "As peças são em Prata 925?", answer: "Sim. A D&TH Jóias trabalha com peças em Prata 925, escolhidas com carinho para unir beleza, qualidade e durabilidade." },
+  { question: "Como faço meu pedido?", answer: "Escolha suas peças na curadoria e fale conosco pelo WhatsApp. Nosso atendimento confirma disponibilidade, valores, pagamento e entrega." },
+  { question: "Vocês entregam em Goiânia?", answer: "Sim. A entrega é grátis em Goiânia para compras acima de R$ 150,00. Também orientamos sobre as opções de envio para outras localidades." },
+  { question: "As joias têm garantia?", answer: "Nossas peças contam com garantia vitalícia, além de atendimento personalizado para orientar você sobre o cuidado com sua joia." },
 ];
 
-const whatsappLink =
-  "https://wa.me/556294369000?text=Ol%C3%A1%2C%20Thalisson%20Prata.%20Quero%20conhecer%20a%20curadoria%20de%20pratas.";
-
-function BrandMark() {
-  return (
-    <span className="brand-mark" aria-hidden="true">
-      <span>TP</span>
-    </span>
-  );
+function Logo({ compact = false }: { compact?: boolean }) {
+  return <img className={compact ? "logo-image logo-compact" : "logo-image"} src={asset("deth-logo.jpeg")} alt="D&TH Jóias" />;
 }
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
-
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <main className="site-shell">
-      <header className="site-header">
-        <div className="header-inner">
-          <a href="#top" className="brand" onClick={closeMenu} aria-label="Thalisson Prata, início">
-            <BrandMark />
-            <span className="brand-copy">
-              <strong>Thalisson</strong>
-              <small>prata</small>
-            </span>
-          </a>
-
-          <nav className={menuOpen ? "main-nav is-open" : "main-nav"} aria-label="Navegação principal">
-            <a href="#curadoria" onClick={closeMenu}>Curadoria</a>
-            <a href="#essencia" onClick={closeMenu}>Nossa essência</a>
-            <a href="#duvidas" onClick={closeMenu}>Dúvidas</a>
-            <a className="nav-cta" href={whatsappLink} target="_blank" rel="noreferrer" onClick={closeMenu}>
-              <MessageCircle size={15} />
-              Falar com a gente
-            </a>
-          </nav>
-
-          <button className="menu-trigger" onClick={() => setMenuOpen((value) => !value)} aria-label={menuOpen ? "Fechar menu" : "Abrir menu"} aria-expanded={menuOpen}>
-            {menuOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
-        </div>
+    <main className="deth-site">
+      <header className="deth-header">
+        <a href="#inicio" aria-label="D&TH Jóias, início"><Logo compact /></a>
+        <nav className={menuOpen ? "deth-nav is-open" : "deth-nav"}>
+          <a href="#sobre" onClick={closeMenu}>Nossa história</a>
+          <a href="#colecao" onClick={closeMenu}>Coleção</a>
+          <a href="#diferenciais" onClick={closeMenu}>Por que D&TH</a>
+          <a href="#contato" onClick={closeMenu}>Contato</a>
+          <a className="deth-nav-button" href={whatsappLink} target="_blank" rel="noreferrer" onClick={closeMenu}><MessageCircle size={15} /> Comprar pelo WhatsApp</a>
+        </nav>
+        <button className="deth-menu" onClick={() => setMenuOpen(!menuOpen)} aria-label="Abrir menu" aria-expanded={menuOpen}>{menuOpen ? <X /> : <Menu />}</button>
       </header>
 
-      <section className="hero" id="top">
-        <div className="hero-copy">
-          <p className="eyebrow"><span className="eyebrow-dot" /> Joias de prata · edição 01</p>
-          <h1>Prata que<br /><em>fala por você.</em></h1>
-          <p className="hero-lede">Peças autorais para quem não precisa exagerar para ser notado. Design, matéria e presença em cada detalhe.</p>
-          <div className="hero-actions">
-            <a className="button button-light" href={whatsappLink} target="_blank" rel="noreferrer">
-              Descobrir a curadoria <ArrowUpRight size={17} />
-            </a>
-            <a className="text-link light-link" href="#essencia">Conhecer a marca <ArrowDownRight size={16} /></a>
+      <section className="deth-hero" id="inicio">
+        <div className="deth-hero-copy">
+          <p className="deth-eyebrow"><Sparkles size={15} /> Prata 925 · Goiânia e região</p>
+          <h1>Sua essência,<br /><em>nosso brilho.</em></h1>
+          <p className="deth-hero-text">Joias escolhidas com carinho para valorizar sua beleza, celebrar seus momentos e acompanhar tudo o que faz você ser única.</p>
+          <div className="deth-actions">
+            <a className="deth-button deth-button-pink" href={whatsappLink} target="_blank" rel="noreferrer">Conhecer a coleção <ArrowUpRight size={17} /></a>
+            <a className="deth-text-link" href="#sobre">Conheça a D&TH <ChevronDown size={16} /></a>
           </div>
-          <div className="hero-note">
-            <span className="note-line" />
-            <span>Prata 925 · feita para permanecer</span>
-          </div>
+          <div className="deth-hero-note"><span /> Peças à pronta entrega · garantia vitalícia</div>
         </div>
-
-        <div className="hero-visual">
-          <img src={heroImage} alt="Joias de prata sobre pedra escura" />
-          <div className="hero-visual-caption">
-            <span>Objeto 01 / 03</span>
-            <span>Brilho sem esforço</span>
-          </div>
-          <div className="hero-stamp" aria-hidden="true">
-            <span>925</span>
-            <small>STG</small>
-          </div>
-        </div>
-        <a className="scroll-cue" href="#curadoria" aria-label="Rolar para a curadoria">
-          <span>Scroll para explorar</span>
-          <ArrowDownRight size={18} />
-        </a>
+        <div className="deth-hero-image"><img src={asset("deth-necklace.jpeg")} alt="Colar em prata 925 da D&TH Jóias" /><div className="deth-hero-badge">D&TH<br /><small>JÓIAS</small></div></div>
       </section>
 
-      <section className="trust-strip" aria-label="Diferenciais da marca">
-        <div className="trust-item"><Sparkles size={19} /><span>Design autoral</span></div>
-        <div className="trust-item"><ShieldCheck size={19} /><span>Prata 925 certificada</span></div>
-        <div className="trust-item"><Truck size={19} /><span>Envio para todo Brasil</span></div>
-        <div className="trust-item"><MessageCircle size={19} /><span>Atendimento próximo</span></div>
+      <section className="deth-trust" aria-label="Diferenciais"><div><ShieldCheck /><span>Prata 925</span></div><div><Sparkles /><span>Qualidade e carinho</span></div><div><Truck /><span>Entrega grátis em Goiânia<br />acima de R$ 150</span></div><div><MessageCircle /><span>Atendimento personalizado</span></div></section>
+
+      <section className="deth-section deth-about" id="sobre">
+        <div className="deth-kicker">Nossa história <span>01 — 04</span></div>
+        <div className="deth-about-grid"><div><p className="deth-overline">Duas pessoas.<br />Um sonho compartilhado.</p><h2>Mais do que<br /><em>uma joia.</em></h2></div><div className="deth-copy"><p className="deth-lead">A D&TH Jóias nasceu de um sonho compartilhado por duas pessoas apaixonadas por beleza, elegância e detalhes que fazem a diferença.</p><p>Somos uma loja apaixonada por prata 925, por peças que encantam e por joias que valorizam a sua essência. Cada detalhe é escolhido por nós com muito carinho, pensando em você e em cada momento especial que uma joia pode representar.</p><a className="deth-text-link dark" href={whatsappLink} target="_blank" rel="noreferrer">Falar com a D&TH <ArrowUpRight size={16} /></a></div></div>
+        <div className="deth-signature"><span>D&TH</span><span>Sua essência, nosso brilho.</span><span>Goiânia · Brasil</span></div>
       </section>
 
-      <section className="manifesto section-pad" id="essencia">
-        <div className="section-kicker">A essência <span>01 — 04</span></div>
-        <div className="manifesto-grid">
-          <div className="manifesto-heading">
-            <p className="overline">Menos ruído.<br />Mais presença.</p>
-            <h2>Uma joia boa<br />não pede licença.</h2>
-          </div>
-          <div className="manifesto-body">
-            <p className="lead-copy">A Thalisson Prata nasceu do desejo de transformar o essencial em assinatura. A gente escolhe peças com linhas precisas, toque real e personalidade — para vestir sua rotina, não uma ocasião.</p>
-            <p>Do primeiro olhar ao último brilho, tudo passa pelo mesmo filtro: <strong>autenticidade sem esforço.</strong> Porque seu estilo já diz muito. A prata só encontra as palavras.</p>
-            <a className="text-link dark-link" href={whatsappLink} target="_blank" rel="noreferrer">Conversar sobre uma peça <ArrowUpRight size={16} /></a>
-          </div>
-        </div>
-        <div className="manifesto-detail" aria-hidden="true"><span>TP</span><span>EST. 2024</span><span>BRASIL</span></div>
+      <section className="deth-section deth-collection" id="colecao">
+        <div className="deth-heading-row"><div><div className="deth-kicker">Nossa curadoria <span>02 — 04</span></div><h2>Peças para<br /><em>se apaixonar.</em></h2></div><p>Trabalhamos com joias em Prata 925 para valorizar a beleza e a essência de cada cliente. Os valores variam conforme o modelo e são informados no catálogo ou pelo atendimento.</p></div>
+        <div className="deth-product-grid">{products.map((product, index) => <article className="deth-product" key={product.name}><a href={whatsappLink} target="_blank" rel="noreferrer"><img src={product.image} alt={product.name} /><span className="deth-product-number">0{index + 1}</span><span className="deth-product-cta"><ArrowUpRight size={18} /></span></a><div className="deth-product-info"><div><h3>{product.name}</h3><p>{product.detail}</p></div><strong>Consultar</strong></div><a className="deth-product-link" href={whatsappLink} target="_blank" rel="noreferrer">Consultar disponibilidade <ArrowUpRight size={14} /></a></article>)}</div>
       </section>
 
-      <section className="curation section-pad" id="curadoria">
-        <div className="section-heading-row">
-          <div>
-            <div className="section-kicker">Curadoria <span>02 — 04</span></div>
-            <h2>Escolhas que<br /><em>ficam.</em></h2>
-          </div>
-          <p className="section-intro">Uma seleção enxuta de peças para começar sua coleção — e continuar usando muito depois da primeira conversa.</p>
-        </div>
+      <section className="deth-promise" id="diferenciais"><div className="deth-promise-number">03<span>/</span>04</div><div><p className="deth-overline">O cuidado D&TH</p><h2>Escolha com calma.<br /><em>Use por muito tempo.</em></h2></div><div className="deth-promise-copy"><p>Mais do que vender joias, queremos proporcionar uma experiência especial — desde a escolha da peça até o momento em que você se olha no espelho e se sente ainda mais linda.</p><a className="deth-button deth-button-outline" href={whatsappLink} target="_blank" rel="noreferrer">Falar com uma consultora <MessageCircle size={16} /></a></div></section>
 
-        <div className="product-grid">
-          {products.map((product, index) => (
-            <article className={`product-card product-${product.tone}`} key={product.name}>
-              <a href={whatsappLink} target="_blank" rel="noreferrer" className="product-image-wrap" aria-label={`Consultar ${product.name} no WhatsApp`}>
-                <img src={product.image} alt={`${product.name}, joia de prata`} loading={index === 0 ? "eager" : "lazy"} />
-                <span className="product-index">0{index + 1}</span>
-                <span className="product-arrow"><ArrowUpRight size={17} /></span>
-              </a>
-              <div className="product-info">
-                <div>
-                  <h3>{product.name}</h3>
-                  <p>{product.category}</p>
-                </div>
-                <strong>{product.price}</strong>
-              </div>
-              <a className="product-link" href={whatsappLink} target="_blank" rel="noreferrer">Consultar disponibilidade <ArrowUpRight size={15} /></a>
-            </article>
-          ))}
-        </div>
-        <div className="curation-footer">
-          <span>Novas peças entram em pequenos lotes.</span>
-          <a className="text-link dark-link" href={whatsappLink} target="_blank" rel="noreferrer">Ver a coleção completa <ArrowUpRight size={16} /></a>
-        </div>
-      </section>
+      <section className="deth-section deth-benefits"><div className="deth-kicker">Feito para você <span>04 — 04</span></div><div className="deth-benefits-grid"><div><h2>O brilho<br /><em>é seu.</em></h2><p>Uma escolha feita com carinho, para um momento especial ou para todos os dias.</p></div><div className="deth-benefit-card"><Check /><h3>Pronta entrega</h3><p>Peças disponíveis para você receber e começar a usar sem esperar.</p></div><div className="deth-benefit-card pink"><Check /><h3>Garantia vitalícia</h3><p>Mais segurança para aproveitar sua joia por muito, muito tempo.</p></div></div></section>
 
-      <section className="experience-band">
-        <div className="experience-number">02<span>/</span>25</div>
-        <div className="experience-copy">
-          <p className="overline">A experiência Thalisson</p>
-          <h2>Escolha com calma.<br /><em>Use por muito tempo.</em></h2>
-        </div>
-        <div className="experience-aside">
-          <p>Cada pedido começa com uma conversa. A gente entende o que você busca, orienta sem pressa e envia sua peça pronta para fazer parte da sua história.</p>
-          <a className="button button-outline" href={whatsappLink} target="_blank" rel="noreferrer">Começar uma conversa <MessageCircle size={16} /></a>
-        </div>
-      </section>
+      <section className="deth-section deth-faq"><div className="deth-heading-row"><div><div className="deth-kicker">Dúvidas? <span>Respostas</span></div><h2>Antes de<br /><em>decidir.</em></h2></div><p>Estamos aqui para deixar sua experiência leve, clara e especial.</p></div><div className="deth-faq-list">{faqs.map((faq, index) => { const isOpen = openFaq === index; return <div className={isOpen ? "deth-faq-item open" : "deth-faq-item"} key={faq.question}><button onClick={() => setOpenFaq(isOpen ? -1 : index)} aria-expanded={isOpen}><span><small>0{index + 1}</small>{faq.question}</span><ChevronDown size={19} /></button>{isOpen && <p>{faq.answer}</p>}</div>; })}</div></section>
 
-      <section className="social-proof section-pad">
-        <div className="section-kicker">Quem já usa <span>03 — 04</span></div>
-        <div className="proof-grid">
-          <div className="proof-heading">
-            <h2>O brilho<br /><em>é seu.</em></h2>
-            <div className="rating"><span>★★★★★</span><small>4.9 / 5 · clientes reais</small></div>
-          </div>
-          <div className="quote-card">
-            <span className="quote-mark">“</span>
-            <blockquote>O anel chegou e parece que sempre foi meu. Tem presença, mas continua delicado. É exatamente o tipo de peça que eu estava procurando.</blockquote>
-            <div className="quote-person"><span className="avatar">MS</span><span><strong>Marina S.</strong><small>São Paulo, SP</small></span></div>
-          </div>
-          <div className="quote-card quote-card-offset">
-            <span className="quote-mark">“</span>
-            <blockquote>Atendimento muito cuidadoso. Me ajudaram a escolher o tamanho e ainda mandaram dicas para manter a prata bonita. Virei cliente.</blockquote>
-            <div className="quote-person"><span className="avatar">RL</span><span><strong>Rafael L.</strong><small>Curitiba, PR</small></span></div>
-          </div>
-        </div>
-      </section>
+      <section className="deth-final" id="contato"><Logo /><p>O próximo detalhe da sua história começa aqui.</p><h2>Encontre a joia que<br /><em>fala por você.</em></h2><a className="deth-button deth-button-white" href={whatsappLink} target="_blank" rel="noreferrer">Chamar no WhatsApp <MessageCircle size={17} /></a></section>
 
-      <section className="faq-section section-pad" id="duvidas">
-        <div className="section-heading-row faq-heading-row">
-          <div>
-            <div className="section-kicker">Sem mistério <span>04 — 04</span></div>
-            <h2>Antes de<br /><em>decidir.</em></h2>
-          </div>
-          <p className="section-intro">Tudo o que você precisa saber para escolher sua próxima peça com tranquilidade.</p>
-        </div>
-        <div className="faq-list">
-          {faqs.map((faq, index) => {
-            const isOpen = openFaq === index;
-            return (
-              <div className={isOpen ? "faq-item is-open" : "faq-item"} key={faq.question}>
-                <button className="faq-question" onClick={() => setOpenFaq(isOpen ? -1 : index)} aria-expanded={isOpen}>
-                  <span><small>0{index + 1}</small>{faq.question}</span>
-                  <span className="faq-icon">{isOpen ? <Minus size={18} /> : <Plus size={18} />}</span>
-                </button>
-                {isOpen && <div className="faq-answer"><p>{faq.answer}</p></div>}
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      <section className="final-cta">
-        <div className="final-cta-inner">
-          <div className="final-cta-symbol"><BrandMark /><span>Prata que permanece.</span></div>
-          <h2>Seu próximo<br /><em>detalhe começa aqui.</em></h2>
-          <p>Fale com a gente e descubra qual peça combina com a sua história.</p>
-          <a className="button button-light" href={whatsappLink} target="_blank" rel="noreferrer">Chamar no WhatsApp <MessageCircle size={17} /></a>
-        </div>
-      </section>
-
-      <footer className="site-footer">
-        <div className="footer-brand"><a href="#top" className="brand"><BrandMark /><span className="brand-copy"><strong>Thalisson</strong><small>prata</small></span></a><p>Prata autoral para todos os dias.</p></div>
-        <div className="footer-links"><a href="#curadoria">Curadoria</a><a href="#essencia">Nossa essência</a><a href="#duvidas">Dúvidas</a><a href={whatsappLink} target="_blank" rel="noreferrer">WhatsApp</a></div>
-        <div className="footer-contact"><a href="https://instagram.com" target="_blank" rel="noreferrer"><Instagram size={17} /> @thalissonprata</a><span>Feito com intenção · Brasil</span></div>
-        <div className="footer-bottom"><span>© 2025 Thalisson Prata</span><span>Prata 925 · cuidado · presença</span></div>
-      </footer>
+      <footer className="deth-footer"><div><Logo compact /><p>D&TH Jóias — sua essência, nosso brilho.</p></div><div className="deth-footer-links"><a href="#sobre">Nossa história</a><a href="#colecao">Coleção</a><a href={instagramLink} target="_blank" rel="noreferrer"><Instagram size={15} /> Instagram</a></div><div className="deth-footer-contact"><a href={whatsappLink} target="_blank" rel="noreferrer"><MessageCircle size={15} /> (62) 99112-7950</a><a href="mailto:dzsantos971@gmail.com"><Mail size={15} /> dzsantos971@gmail.com</a></div><div className="deth-footer-bottom"><span>© 2026 D&TH Jóias</span><span>Prata 925 · Goiânia</span></div></footer>
     </main>
   );
 }
